@@ -7,6 +7,7 @@ import com.gabriel.service.ValidationService;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
+import io.swagger.v3.oas.annotations.Operation;
 
 import javax.inject.Inject;
 
@@ -17,7 +18,11 @@ public class PasswordController {
     private ValidationService validationService;
 
     @Post
+    @Operation(
+            summary = "Check password",
+            description = "Check given password attends to our minimum security requirements."
+    )
     public PasswordResponse checkPassword(@Body Password password){
-        return validationService.validatePassword(password.getPassword());
+        return validationService.validatePassword(password);
     }
 }

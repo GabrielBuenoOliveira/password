@@ -28,6 +28,7 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("io.micronaut:micronaut-management:2.2.0")
     runtimeOnly("ch.qos.logback:logback-classic")
 
     testCompileOnly 'org.projectlombok:lombok:1.18.16'
