@@ -4,9 +4,7 @@ import com.gabriel.model.Password;
 import com.gabriel.model.PasswordResponse;
 import com.gabriel.model.ValidationResult;
 import com.gabriel.model.ValidationStatus;
-import com.gabriel.service.validation.MinLengthValidation;
-import com.gabriel.service.validation.ValidationRule;
-import com.gabriel.service.validation.WithoutRepeatedCharValidation;
+import com.gabriel.service.validation.*;
 
 import javax.inject.Singleton;
 import java.util.List;
@@ -18,7 +16,11 @@ public class ValidationService {
 
     private static final List<ValidationRule> validations = List.of(
             new MinLengthValidation(),
-            new WithoutRepeatedCharValidation()
+            new WithoutRepeatedCharValidation(),
+            new UpperCaseValidation(),
+            new LowerCaseValidation(),
+            new SymbolValidation(),
+            new DigitValidation()
     );
 
     public PasswordResponse validatePassword(Password password) {
