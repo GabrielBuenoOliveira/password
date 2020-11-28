@@ -6,6 +6,7 @@ import com.gabriel.model.ValidationResult;
 import com.gabriel.model.ValidationStatus;
 import com.gabriel.service.validation.*;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Singleton;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Singleton
+@Slf4j
 public class ValidationService {
 
     @Getter
@@ -42,6 +44,7 @@ public class ValidationService {
     }
 
     private boolean applyValidations(String password) {
+        log.info("Applying validations");
         return validations.stream()
                 .map(validationRule -> validationRule.checkValidationRule(password))
                 .filter(Predicate.not(Boolean::booleanValue))
@@ -50,6 +53,7 @@ public class ValidationService {
     }
 
     private List<ValidationResult> applyValidationsDetailed(String password) {
+        log.info("Applying validations and getting validations details");
         return validations.stream()
                 .map(validationRule -> ValidationResult.builder()
                         .name(validationRule.getValidationName())
