@@ -4,8 +4,8 @@ import io.micronaut.core.util.StringUtils;
 
 public class MinLengthValidation extends ValidationRule {
 
-    private static final String MIN_LENGTH_VALIDATION = "Minimum length validation";
-    protected static final int MIN_LENGTH = 8;
+    public static final String MIN_LENGTH_VALIDATION = "Minimum length validation";
+    private static final int MIN_LENGTH = 8;
 
     public MinLengthValidation() {
         super(MIN_LENGTH_VALIDATION);

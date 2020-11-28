@@ -1,10 +1,11 @@
 package com.gabriel.service;
 
-import com.gabriel.model.Password;
+import com.gabriel.model.PasswordToValidate;
 import com.gabriel.model.PasswordResponse;
 import com.gabriel.model.ValidationResult;
 import com.gabriel.model.ValidationStatus;
 import com.gabriel.service.validation.*;
+import lombok.Getter;
 
 import javax.inject.Singleton;
 import java.util.List;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
 @Singleton
 public class ValidationService {
 
+    @Getter
     private static final List<ValidationRule> validations = List.of(
             new MinLengthValidation(),
+            new NoSpacesValidation(),
             new WithoutRepeatedCharValidation(),
             new UpperCaseValidation(),
             new LowerCaseValidation(),
@@ -23,7 +26,7 @@ public class ValidationService {
             new DigitValidation()
     );
 
-    public PasswordResponse validatePassword(Password password) {
+    public PasswordResponse validatePassword(PasswordToValidate password) {
         if(password.isDetailed()) {
             List<ValidationResult> validationResults = applyValidationsDetailed(password.getPassword());
             return PasswordResponse.builder()

@@ -1,7 +1,7 @@
 package com.gabriel.controller;
 
 
-import com.gabriel.model.Password;
+import com.gabriel.model.PasswordToValidate;
 import com.gabriel.model.PasswordResponse;
 import com.gabriel.service.ValidationService;
 import io.micronaut.http.annotation.Body;
@@ -22,7 +22,7 @@ public class PasswordController {
             summary = "Check password",
             description = "Check given password attends to our minimum security requirements."
     )
-    public PasswordResponse checkPassword(@Body Password password){
+    public PasswordResponse checkPassword(@Body PasswordToValidate password){
         return validationService.validatePassword(password);
     }
 }
