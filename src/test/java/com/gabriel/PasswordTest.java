@@ -8,6 +8,7 @@ import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MutableHttpRequest;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
+import io.micronaut.http.client.exceptions.HttpClientResponseException;
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
@@ -86,6 +87,15 @@ public class PasswordTest {
         assertFalse(Objects.requireNonNull(response.body()).isValid());
         assertNull(response.body().getValidations());
 
+    }
+
+    @Test
+    public void shouldFailNotPassingPassword() {
+        MutableHttpRequest<PasswordToValidate> post = HttpRequest.POST("",
+                PasswordToValidate.builder()
+                .build());
+        assertThrows(HttpClientResponseException.class,() -> client.toBlocking()
+                .exchange(post, PasswordResponse.class), "Password must be given");
     }
 
 }

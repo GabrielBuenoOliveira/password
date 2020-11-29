@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@Singleton
 @Slf4j
+@Singleton
 public class ValidationService {
 
     @Getter

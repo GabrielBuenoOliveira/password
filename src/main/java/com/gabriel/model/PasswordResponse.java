@@ -20,4 +20,5 @@ public class PasswordResponse {
     private boolean isValid;
     @Schema(description = "List of validations applied to given password")
     private List<ValidationResult> validations;
+    private String message;
 }
