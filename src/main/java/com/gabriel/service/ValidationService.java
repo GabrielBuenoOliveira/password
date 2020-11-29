@@ -1,7 +1,7 @@
 package com.gabriel.service;
 
-import com.gabriel.model.PasswordToValidate;
 import com.gabriel.model.PasswordResponse;
+import com.gabriel.model.PasswordToValidate;
 import com.gabriel.model.ValidationResult;
 import com.gabriel.model.ValidationStatus;
 import com.gabriel.service.validation.*;
@@ -53,7 +53,7 @@ public class ValidationService {
     }
 
     private List<ValidationResult> applyValidationsDetailed(String password) {
-        log.info("Applying validations and getting validations details");
+        log.info("Applying validations and getting details");
         return validations.stream()
                 .map(validationRule -> ValidationResult.builder()
                         .name(validationRule.getValidationName())
