@@ -1,7 +1,6 @@
 package com.gabriel.controller;
 
 
-import com.gabriel.model.PasswordResponse;
 import com.gabriel.model.PasswordToValidate;
 import com.gabriel.service.ValidationService;
 import io.micronaut.core.util.StringUtils;
@@ -27,12 +26,9 @@ public class PasswordController {
             description = "Check password follows the minimum requirement of security.")
     @ApiResponse(responseCode = "200", description = "Password is valid")
     @ApiResponse(responseCode = "400", description = "Malformed request, missing body password field")
-    public HttpResponse<PasswordResponse> checkPassword(@Body @Parameter(description = "Password to be checked") PasswordToValidate password) {
+    public HttpResponse<?> checkPassword(@Body @Parameter(description = "Password to be checked") PasswordToValidate password) {
         if (StringUtils.isEmpty(password.getPassword())) {
-            return HttpResponse.badRequest()
-                    .body(PasswordResponse.builder()
-                            .message("Password must be given.")
-                            .build());
+            return HttpResponse.badRequest("Password must be given.");
         }
         return HttpResponse.ok(validationService.validatePassword(password));
     }
